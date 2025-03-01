@@ -1,0 +1,48 @@
+.main {
+    display: flex;
+}
+
+.navbar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    height: 93vh;
+    /* Full viewport height */
+    width: 300px;
+    /* Full width when expanded */
+    padding: var(--mantine-spacing-md);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--mantine-color-blue-filled);
+    transition: width 0.3s ease-in-out;
+    z-index: 1000;
+    /* Ensures navbar is above other content */
+}
+
+/* Collapsed Navbar */
+.navbar.collapsed {
+    width: 80px;
+    /* Smaller width when collapsed */
+}
+
+/* Content Area */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-left: 300px;
+    /* Push content right to match navbar width */
+    transition: margin-left 0.3s ease-in-out;
+    background-color: whitesmoke;
+}
+
+/* When Navbar is collapsed */
+.content.collapsed {
+    margin-left: 80px;
+}
+
+/* Header - Ensure it's above navbar */
+.header {
+    position: relative;
+    z-index: 1100;
+    /* Keep above navbar */
+}
