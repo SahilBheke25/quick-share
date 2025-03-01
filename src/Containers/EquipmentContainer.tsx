@@ -1,6 +1,11 @@
-import EquipmentDetails from "../Components/EquipmentComponent";
+import { useParams } from "react-router-dom";
+import { useGetEquipmentByIdQuery } from "../redux/slice/slice";
+import EquipmentComponent from "../Components/EquipmentComponent";
 
 const EquipmentContainer = () => {
-  return <EquipmentDetails />;
+  const { id } = useParams();
+  const { data } = useGetEquipmentByIdQuery(id);
+  console.log("data: ", data);
+  return <EquipmentComponent data={data} />;
 };
 export default EquipmentContainer;

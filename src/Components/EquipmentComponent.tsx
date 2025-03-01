@@ -2,7 +2,8 @@ import { Card, Image, Text, Button, Group } from "@mantine/core";
 import EquiImg from "../assets/login.jpg";
 import "./styles/equipmentComponent.css";
 
-const EquipmentDetails = () => {
+const EquipmentComponent = ({ data }) => {
+  console.log("EquipmentDetails Component: ", data);
   return (
     <div className="p-6">
       <div className="flex justify-center">
@@ -61,4 +62,4 @@ const EquipmentDetails = () => {
     </div>
   );
 };
-export default EquipmentDetails;
+export default EquipmentComponent;
