@@ -1,7 +1,8 @@
-import HomeContainer from "../features/home/Container";
-import LoginContainer from "../features/Login/Container";
+import HomeContainer from "../Containers/HomeContainer";
+import LoginContainer from "../Containers/LoginContainer";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../shared/Layout";
+import EquipmentContainer from "../Containers/EquipmentContainer";
 
 const routes = createBrowserRouter([
   {
@@ -10,14 +11,14 @@ const routes = createBrowserRouter([
   },
   {
     element: <Layout />,
-    path: "/",
     children: [
       {
-        path: "home",
+        path: "/",
         element: <HomeContainer />,
       },
       {
-        path: "rent",
+        path: "/equipment",
+        element: <EquipmentContainer />,
       },
     ],
   },

@@ -8,15 +8,14 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
-import classes from "./login.module.css";
+import classes from "./styles/login.module.css";
 import { useState } from "react";
-import { UserCredentials } from "../../types/types";
+import { UserCredentials } from "../types/types";
 
 type Props = {
-  authenticate: (user: UserCredentials) => void
-}
-export default function LoginComponent({authenticate}: Props) {
-
+  authenticate: (user: UserCredentials) => void;
+};
+export default function LoginComponent({ authenticate }: Props) {
   const [credential, setCredential] = useState<UserCredentials>({
     username: "",
     password: "",
@@ -33,17 +32,32 @@ export default function LoginComponent({authenticate}: Props) {
           label="Username"
           placeholder="username"
           size="md"
-          onChange={(event) => { setCredential((prev) => ({...prev, username: event.target.value}))}}
+          onChange={(event) => {
+            setCredential((prev) => ({
+              ...prev,
+              username: event.target.value,
+            }));
+          }}
         />
         <PasswordInput
           label="Password"
           placeholder="Your password"
           mt="md"
           size="md"
-          onChange={(event) => { setCredential((prev) => ({...prev, password: event.target.value}))}}
+          onChange={(event) => {
+            setCredential((prev) => ({
+              ...prev,
+              password: event.target.value,
+            }));
+          }}
         />
         <Checkbox label="Keep me logged in" mt="xl" size="md" />
-        <Button fullWidth mt="xl" size="md" onClick={()=> authenticate(credential)}>
+        <Button
+          fullWidth
+          mt="xl"
+          size="md"
+          onClick={() => authenticate(credential)}
+        >
           Login
         </Button>
 
