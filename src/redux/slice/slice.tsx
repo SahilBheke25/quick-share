@@ -27,11 +27,20 @@ export const apiSlice = createApi({
           url: "/equipments",
         }),
       }),
+      getEquipmentById: builder.query<Equipments, string>({
+        query: (id) => ({
+          url: `/equipments/${id}`,
+        }),
+      }),
     };
   },
 });
 
-export const { useUserLoginMutation, useGetQuipmentsQuery } = apiSlice;
+export const {
+  useUserLoginMutation,
+  useGetQuipmentsQuery,
+  useGetEquipmentByIdQuery,
+} = apiSlice;
 
 // export const { login } = loginSlice.actions
 // export default loginSlice.reducer

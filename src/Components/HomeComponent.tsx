@@ -20,7 +20,6 @@ const HomeComponent = () => {
       <Text size="xs">{feature.label}</Text>
     </Center>
   ));
-
   const { data, isLoading, error } = useGetQuipmentsQuery();
   console.log("data: ", data);
   const navigate = useNavigate();
@@ -83,7 +82,7 @@ const HomeComponent = () => {
                 <Button
                   radius="xl"
                   style={{ flex: 1 }}
-                  onClick={() => navigate("/equipment")}
+                  onClick={() => navigate(`/equipment/${34}`)}
                 >
                   View More
                 </Button>
