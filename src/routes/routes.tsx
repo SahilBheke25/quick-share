@@ -1,4 +1,4 @@
-import HomeContainer from "../Containers/HomeContainer";
+import HomeContainer from "../Components/HomeComponent";
 import LoginContainer from "../Containers/LoginContainer";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../shared/Layout";

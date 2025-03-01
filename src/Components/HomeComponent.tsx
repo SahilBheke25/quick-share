@@ -36,6 +36,9 @@ const HomeComponent = () => {
             <Card.Section className={classes.imageSection}>
               <Image src={tractorImg} alt="Tesla Model S" />
             </Card.Section>
+            {/* <div>
+              <img src={tractorImg} alt="" />
+            </div> */}
 
             <Group justify="space-between" mt="md">
               <div>
