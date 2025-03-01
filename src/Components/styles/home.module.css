@@ -1,6 +1,6 @@
 .card {
   background-color: var(--mantine-color-body);
-  width: 20%;
+    width: 20%;
 }
 
 .imageSection {
@@ -36,3 +36,8 @@
   gap: 20px;
   flex-wrap: wrap;
 }
+
+/* .container{
+  width: 60vw;
+  height: 800px;
+} */

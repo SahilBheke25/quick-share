@@ -1,9 +1,10 @@
 // import { IconGasStation, IconGauge, IconManualGearbox, IconUsers } from '@tabler/icons-react';
 import { Badge, Button, Card, Center, Group, Image, Text } from "@mantine/core";
-import classes from "./home.module.css";
-import { useGetQuipmentsQuery } from "../../../redux/slice/slice";
-import { Equipments } from "../../types/types";
-import tractorImg from "../../../assets/login.jpg";
+import classes from "./styles/home.module.css";
+import { useGetQuipmentsQuery } from "../redux/slice/slice";
+import { Equipments } from "../types/types";
+import tractorImg from "../assets/login.jpg";
+import { useNavigate } from "react-router-dom";
 
 const mockdata = [
   { label: "4 passengers" },
@@ -22,6 +23,7 @@ const HomeComponent = () => {
 
   const { data, isLoading, error } = useGetQuipmentsQuery();
   console.log("data: ", data);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -34,6 +36,9 @@ const HomeComponent = () => {
             <Card.Section className={classes.imageSection}>
               <Image src={tractorImg} alt="Tesla Model S" />
             </Card.Section>
+            {/* <div>
+              <img src={tractorImg} alt="" />
+            </div> */}
 
             <Group justify="space-between" mt="md">
               <div>
@@ -75,7 +80,11 @@ const HomeComponent = () => {
                   </Text>
                 </div>
 
-                <Button radius="xl" style={{ flex: 1 }}>
+                <Button
+                  radius="xl"
+                  style={{ flex: 1 }}
+                  onClick={() => navigate("/equipment")}
+                >
                   View More
                 </Button>
               </Group>

@@ -15,13 +15,10 @@ import { Code, Group } from "@mantine/core";
 import classes from "./NavbarSimpleColored.module.css";
 
 const data = [
-  { link: "", label: "Account", icon: IconBellRinging },
-  { link: "", label: "Billing", icon: IconReceipt2 },
-  { link: "", label: "Security", icon: IconFingerprint },
-  { link: "", label: "SSH Keys", icon: IconKey },
-  { link: "", label: "Databases", icon: IconDatabaseImport },
-  { link: "", label: "Authentication", icon: Icon2fa },
-  { link: "", label: "Other Settings", icon: IconSettings },
+  { link: "", label: "Profile", icon: IconBellRinging },
+  { link: "", label: "A&S", icon: IconReceipt2 },
+  { link: "", label: "Lended", icon: IconFingerprint },
+  { link: "", label: "Rented", icon: IconKey },
 ];
 
 type Porps = {
@@ -42,7 +39,7 @@ function Navbar({ expanded, setExpanded }: Porps) {
         setActive(item.label);
       }}
     >
-      <item.icon className={classes.linkIcon} stroke={1.5} />
+      {/* <item.icon className={classes.linkIcon} stroke={1.5} /> */}
       <span>{item.label}</span>
     </a>
   ));
