@@ -2,8 +2,9 @@ import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { RouterProvider } from "react-router-dom";
 import routes from "./routes/routes";
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import Layout from "./shared/Layout";
 
 function App() {
   return (

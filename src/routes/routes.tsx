@@ -3,22 +3,24 @@ import LoginContainer from "../features/Login/Container";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../shared/Layout";
 
-const routes = createBrowserRouter ([
+const routes = createBrowserRouter([
   {
     path: "/login",
     element: <LoginContainer />,
   },
   {
-    path: "/",
     element: <Layout />,
+    path: "/",
     children: [
       {
-        path: "",
+        path: "home",
         element: <HomeContainer />,
       },
+      {
+        path: "rent",
+      },
     ],
-  }
+  },
 ]);
 
 export default routes;
-
