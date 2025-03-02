@@ -27,7 +27,7 @@ export const apiSlice = createApi({
           url: "/equipments",
         }),
       }),
-      getEquipmentById: builder.query<Equipments, string>({
+      getEquipmentById: builder.query<Equipments, number>({
         query: (id) => ({
           url: `/equipments/${id}`,
         }),
