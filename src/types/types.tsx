@@ -12,10 +12,29 @@ export type Equipments = {
   equipment_img: string;
   status: string;
   uploaded_at: string;
+  user_id: number;
 }
 
 export type LoginError = {
   data: null;
   error_code: number;
   error_message: string;
+}
+
+export type User = {
+  id: number;
+  username: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  address: string;
+  pincode: number;
+  uid: number;
+}
+
+export type UserDetails = {
+  error_code: number;
+  error_message: string;
+  data: User;
 }

@@ -11,10 +11,11 @@ function App() {
   return (
     <MantineProvider>
       <Provider store={store}>
-        <RouterProvider router={routes} />
+       <RouterProvider router={routes} />
         {/* <EquipmentContainer /> */}
       </Provider>
     </MantineProvider>
+    // <EquipmentContainer/>
   );
 }
 
