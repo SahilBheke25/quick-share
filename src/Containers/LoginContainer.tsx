@@ -1,33 +1,34 @@
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/rtk/slice";
+import { useUserLoginMutation } from "../redux/rtk/slice";
+import { useNavigate } from "react-router-dom";
 import LoginComponent from "../Components/LoginComponent";
 import { UserCredentials } from "../types/types";
-import { useUserLoginMutation } from "../redux/slice/slice";
-import { useNavigate } from "react-router-dom";
 
 const LoginContainer = () => {
-  const [userLogin, { data, isLoading, error }] = useUserLoginMutation();
+  const dispatch = useDispatch();
+  const [userLogin, { isLoading, error }] = useUserLoginMutation();
   const navigate = useNavigate();
-  const authenticate = (user: UserCredentials) => {
+
+  const authenticate = async (user: UserCredentials) => {
     try {
-      userLogin(user).unwrap();
-      if (isLoading) <h1>"loading"</h1>;
-      if (data) {
-        console.log("data is here, ", data);
-        navigate("/");
-      }
-      if (error) {
-        console.log("err is here");
-      }
+      const response = await userLogin(user).unwrap();
+      dispatch(setUser(response.data)); // Save user in Redux
+      console.log("Login successful:", response.data);
+      navigate("/");
     } catch (err) {
-      console.log("error:", err);
+      console.error("Login failed:", err);
+      alert("Login failed. Please check your credentials.");
     }
   };
 
   return (
     <>
+      {isLoading && <h1>Loading...</h1>}
+      {error && <p style={{ color: "red" }}>Login failed. Please try again.</p>}
       <LoginComponent authenticate={authenticate} />
-      {/* {error && {error}} */}
-      {/* {data && alert(data.data)} */}
     </>
   );
 };
+
 export default LoginContainer;

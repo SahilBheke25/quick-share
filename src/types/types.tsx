@@ -38,3 +38,9 @@ export type UserDetails = {
   error_message: string;
   data: User;
 }
+
+export type Resp = {
+  error_code: number;
+  error_message: string;
+  data: null | User | Equipments;
+}

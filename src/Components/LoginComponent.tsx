@@ -1,20 +1,20 @@
 import {
   Anchor,
   Button,
-  Checkbox,
   Paper,
   PasswordInput,
   Text,
   TextInput,
   Title,
 } from "@mantine/core";
-import classes from "./styles/login.module.css";
 import { useState } from "react";
 import { UserCredentials } from "../types/types";
+import classes from "./styles/login.module.css";
 
 type Props = {
   authenticate: (user: UserCredentials) => void;
 };
+
 export default function LoginComponent({ authenticate }: Props) {
   const [credential, setCredential] = useState<UserCredentials>({
     username: "",
@@ -32,42 +32,40 @@ export default function LoginComponent({ authenticate }: Props) {
           label="Username"
           placeholder="username"
           size="md"
-          onChange={(event) => {
+          value={credential.username}
+          onChange={(event) =>
             setCredential((prev) => ({
               ...prev,
               username: event.target.value,
-            }));
-          }}
+            }))
+          }
         />
         <PasswordInput
           label="Password"
           placeholder="Your password"
           mt="md"
           size="md"
-          onChange={(event) => {
+          value={credential.password}
+          onChange={(event) =>
             setCredential((prev) => ({
               ...prev,
               password: event.target.value,
-            }));
-          }}
+            }))
+          }
         />
-        <Checkbox label="Keep me logged in" mt="xl" size="md" />
         <Button
           fullWidth
           mt="xl"
           size="md"
           onClick={() => authenticate(credential)}
+          disabled={!credential.username || !credential.password}
         >
           Login
         </Button>
 
         <Text ta="center" mt="md">
           Don&apos;t have an account?{" "}
-          <Anchor<"a">
-            href="#"
-            fw={700}
-            onClick={(event) => event.preventDefault()}
-          >
+          <Anchor<"a"> href="#" fw={700} onClick={(event) => event.preventDefault()}>
             Register
           </Anchor>
         </Text>
