@@ -15,7 +15,7 @@ const LoginContainer = () => {
       const response = await userLogin(user).unwrap();
       dispatch(setUser(response.data)); // Save user in Redux
       console.log("Login successful:", response.data);
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       console.error("Login failed:", err);
       alert("Login failed. Please check your credentials.");

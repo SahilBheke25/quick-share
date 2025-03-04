@@ -1,10 +1,9 @@
-
 import EquiImg from "../assets/login.jpg";
-import { Equipments, User } from "../types/types";
+import { Equipments, Requirement, User } from "../types/types";
 import "./styles/equipmentPageStyle.css";
 import "../shared/styles/normalize.css";
+import "./styles/modelWindow.css";
 import { useState } from "react";
-import ReactDatePicker from "react-datepicker";
 
 type Props = {
   equipment?: Equipments;
@@ -12,27 +11,99 @@ type Props = {
   handleRent: () => void;
   isModalOpen: boolean;
   closeModal: () => void;
+  placeOrder: () => void;
 };
+
 const EquipmentComponent = ({
   equipment,
   owner,
   handleRent,
   isModalOpen,
   closeModal,
+  placeOrder
 }: Props) => {
   const [quantity, setQuantity] = useState<number | "">("");
   const [rentStart, setRentStart] = useState<Date | null>(null);
   const [rentEnd, setRentEnd] = useState<Date | null>(null);
+  const [error, setError] = useState<string>("");
 
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value);
+    if (!isNaN(value)) {
+      if (equipment?.quantity && value > equipment.quantity) {
+        setError("Quantity not available");
+      } else {
+        setError("");
+        setQuantity(value);
+      }
+    } else {
+      setError("");
+      setQuantity("");
+    }
+  };
+  // Handle Start Date Selection
+  const handleStartDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const selectedDate = event.target.value
+      ? new Date(event.target.value)
+      : null;
+    if (!selectedDate) {
+      setError("Please select a start date.");
+      return;
+    }
+    setRentStart(selectedDate);
+    setRentEnd(null); // Reset end date when start date changes
+    setError(""); // Clear errors when valid
+  };
+
+  // Handle End Date Selection
+  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedDate = event.target.value
+      ? new Date(event.target.value)
+      : null;
+    if (!selectedDate) {
+      setError("Please select an end date.");
+      return;
+    }
+    if (selectedDate && rentStart && selectedDate <= rentStart) {
+      setError("End date must be greater than the start date.");
+      return;
+    }
+    setRentEnd(selectedDate);
+    setError(""); // Clear errors when valid
+  };
+
+  // Handle Order Placement
   const handlePlaceOrder = () => {
+    if (!rentStart || !rentEnd) {
+      setError("Both start date and end date are required.");
+      return;
+    }
+    if (!quantity || quantity <= 0) {
+      setError("Please select a valid quantity.");
+      return;
+    }
     console.log("Order Details:", {
       quantity,
       rentStart,
       rentEnd,
       equipment: equipment?.equipment_name,
     });
-    closeModal(); // Close modal after submitting
+    closeModal();
+    const rentStartISO = new Date(rentStart).toISOString().toString();
+  const rentEndISO = new Date(rentEnd).toISOString().toString();
+
+    const obj : Requirement = {
+      billingData: {
+        rent_at: rentStartISO,
+        rent_till: rentEndISO,
+        quantity: quantity
+      }
+    }
+    placeOrder(obj)
   };
+
   return (
     <>
       <div className="image-container">
@@ -44,7 +115,6 @@ const EquipmentComponent = ({
           <div className="thumbnail">Img</div>
         </div>
       </div>
-      {/* <!-- IMAGES SECTION END --> */}
 
       {/* <!-- PRODUCT CARD --> */}
       <div className="product-card">
@@ -62,11 +132,7 @@ const EquipmentComponent = ({
           <div className="details">
             <span>Quantity {equipment?.quantity}</span>
             <div className="actions">
-              <a
-                href="https://www.flaticon.com/free-icons/share"
-                title="Share icons"
-                className="action-link"
-              >
+              <a href="#" className="action-link">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/54/54628.png"
                   alt="Share Icon"
@@ -74,11 +140,7 @@ const EquipmentComponent = ({
                 />
                 Share
               </a>
-              <a
-                href="https://www.flaticon.com/free-icons/heart"
-                title="Heart icons"
-                className="action-link"
-              >
+              <a href="#" className="action-link">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/1077/1077035.png"
                   alt="Save Icon"
@@ -92,7 +154,9 @@ const EquipmentComponent = ({
             <button className="grey-btn">Schedule Tour</button>
             <button className="grey-btn">Message Agent</button>
           </div>
-          <button className="rent-btn" onClick={handleRent}>Rent</button>
+          <button className="rent-btn" onClick={handleRent}>
+            Rent
+          </button>
         </div>
         <div className="last">
           <h3 className="subtitle">Listing Agent</h3>
@@ -119,49 +183,51 @@ const EquipmentComponent = ({
         <div className="modal-overlay">
           <div className="modal">
             <h2>Rent Equipment</h2>
-            <label>Quantity:</label>
-            <input
-              type="number"
-              min="1"
-              max={equipment?.quantity || 10}
-              value={quantity}
-              onChange={(e) => setQuantity(parseInt(e.target.value))}
-            />
+            <div className="form-group">
+              <label>Quantity:</label>
+            
+              <input
+                type="number"
+                min="1"
+                max={equipment?.quantity}
+                value={quantity}
+                onChange={handleQuantityChange}
+              />
+         
+            </div>
 
-            <label>Start Date:</label>
-            <ReactDatePicker selected={rentStart} onChange={(date) => setRentStart(date)} />
+            <div className="form-group">
+              <label htmlFor="start-date">Start Date:</label>
+              <input
+                type="date"
+                id="start-date"
+                min={new Date().toISOString().split("T")[0]}
+                value={rentStart ? rentStart.toISOString().split("T")[0] : ""}
+                onChange={handleStartDateChange}
+              />
+            </div>
 
-            <label>End Date:</label>
-            <ReactDatePicker selected={rentEnd} onChange={(date) => setRentEnd(date)} />
+            <div className="form-group">
+              <label htmlFor="end-date">End Date:</label>
+              <input
+                type="date"
+                id="end-date"
+                value={rentEnd ? rentEnd.toISOString().split("T")[0] : ""}
+                onChange={handleEndDateChange}
+                disabled={!rentStart}
+                min={rentStart ? rentStart.toISOString().split("T")[0] : ""}
+              />
+            </div>
+
+            {error && <p style={{ color: "red" }}>{error}</p>}
 
             <button onClick={closeModal}>Cancel</button>
-            <button onClick={() => console.log("Order Placed!")}>Place Order</button>
+            <button onClick={handlePlaceOrder}>Place Order</button>
           </div>
         </div>
       )}
-
-      <style>
-        {`
-          .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-          .modal {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-          }
-        `}
-      </style>
     </>
   );
 };
+
 export default EquipmentComponent;

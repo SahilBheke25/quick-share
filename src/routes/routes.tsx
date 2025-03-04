@@ -4,26 +4,46 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../shared/Layout";
 import EquipmentContainer from "../Containers/EquipmentsContainer";
 import UserProfileContainer from "../Containers/UserProfileContainer";
+import AccountSecurityContainer from "../Containers/AccountSecurityContainer";
+import RentedContainer from "../Containers/RentedContainer";
+import LenedContainer from "../Containers/LenedContainer";
+import RegisterContainer from "../Containers/RegisterContainer";
 
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <LoginContainer />,
+    element: <LoginContainer/>,
   },
   {
-    element: <Layout />,
+    path: "/register",
+    element: <RegisterContainer/>
+  },
+  {
+    element: <Layout/>,
     children: [
       {
         path: "/home",
-        element: <HomeContainer />,
+        element: <HomeContainer/>,
       },
       {
         path: "/equipment/:id",
-        element: <EquipmentContainer />,
+        element: <EquipmentContainer/>,
       },
       {
-        path: 'user/user-profile',
-        element: <UserProfileContainer />
+        path: '/user/user-profile',
+        element: <UserProfileContainer/>
+      },
+      {
+        path: '/user/account-security',
+        element: <AccountSecurityContainer/>
+      },
+      {
+        path: '/user/rented',
+        element: <RentedContainer/>
+      },
+      {
+        path: '/user/lended',
+        element: <LenedContainer/>
       }
     ],
   },

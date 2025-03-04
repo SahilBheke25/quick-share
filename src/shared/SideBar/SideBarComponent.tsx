@@ -23,13 +23,13 @@ function Navbar() {
             {/* <button>Profile</button> */}
           </li>
           <li>
-            <a href="#">Account & Security</a>
+            <a href="/user/account-security">Account & Security</a>
           </li>
           <li>
-            <a href="#">Rented</a>
+            <a href="/user/rented">Rented</a>
           </li>
           <li>
-            <a href="#">Lended</a>
+            <a href="/user/lended">Lended</a>
           </li>
           <li>
             <a href="#" id="future-scope">
@@ -48,7 +48,7 @@ function Navbar() {
       </div>
 
       <footer>
-        Crafted with ♥️
+        Crafted with
         <br />
         by Sahil Bheke
       </footer>
@@ -57,3 +57,5 @@ function Navbar() {
 }
 
 export default Navbar;
+
+// ♥️

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { Equipments, LoginError, Resp, User, UserCredentials, UserDetails } from "../../types/types";
+import { Bill, Equipments, LoginError, Requirement, Resp, User, UserCredentials, UserDetails } from "../../types/types";
 
 interface AuthState {
   user: User | null;
@@ -67,6 +67,13 @@ export const apiSlice = createApi({
         query: (id) => ({
           url: `/owner/equipment/${id}`
         })
+      }),
+      rentEquipment: builder.mutation<Bill, Requirement>({
+        query:(requirement) => ({
+          url: `users/${requirement.userId}/equipments/${requirement.equipmentId}/rent`,
+          method: "POST",
+          body: requirement.billingData,
+        })
       })
     };
   },
@@ -77,7 +84,8 @@ export const {
   useGetQuipmentsQuery,
   useGetEquipmentByIdQuery,
   useGetUserProfileByIdQuery,
-  useGetOwnerByEquipIdQuery
+  useGetOwnerByEquipIdQuery,
+  useRentEquipmentMutation
 } = apiSlice;
 
 // export const { login } = loginSlice.actions

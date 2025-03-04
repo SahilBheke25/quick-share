@@ -11,7 +11,7 @@ export function Header() {
         <input type="text" placeholder="Search" />
       </div>
       <div className="nav-links">
-        {/* <a href="#">Rent</a> */}
+        <a href="/home">Home</a>
         <a href="#">Lend</a>
       </div>
       <div className="auth-buttons">

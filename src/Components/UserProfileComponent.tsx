@@ -1,7 +1,5 @@
-import React from "react";
 import "../shared/styles/normalize.css";
 import "../shared/styles/homeSytle.css";
-// import "tailwindcss";
 import "./styles/userFrom.css";
 
 const UserProfileComponent = () => {
@@ -10,28 +8,31 @@ const UserProfileComponent = () => {
       <div className="card-section flex w100 justify-center">
         <div className="card-holder flex">
           <div className="form-container">
-            <label className="form-label">Email:</label>
-            <div className="email-box">
-              <p>
-                Your email address is <strong>sahilbheke3@gmail.com</strong>
-              </p>
-              <button className="edit-btn">&#9998;</button>
-            </div>
+            <label className="form-label">First Name:</label>
+            <input
+              type="text"
+              placeholder="Enter First Name"
+              className="input-field"
+            />
 
-            <label className="form-label">Password:</label>
+            <label className="form-label">Last Name:</label>
             <input
-              type="password"
-              placeholder="Enter current password"
+              type="text"
+              placeholder="Enter Last Name"
               className="input-field"
             />
+
+            <label className="form-label">Address:</label>
             <input
-              type="password"
-              placeholder="Enter new password"
+              type="text"
+              placeholder="Enter your Address"
               className="input-field"
             />
+
+            <label className="form-label">Pincode:</label>
             <input
-              type="password"
-              placeholder="Re-type new password"
+              type="text"
+              placeholder="Enter your Pincode"
               className="input-field"
             />
 
