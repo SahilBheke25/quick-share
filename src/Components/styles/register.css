@@ -137,3 +137,9 @@ button:hover {
   width: 100%;
   background-color: green;
 }
+
+.register-error {
+  color: red;
+  font-size: 10px;
+  margin-top: 4px;
+}

@@ -20,6 +20,11 @@ export type LoginError = {
   error_code: number;
   error_message: string;
 };
+export type RegisterSuccess = {
+  data: string;
+  error_code: number;
+  error_message: string
+}
 
 export type User = {
   id: number;
@@ -67,3 +72,16 @@ export type ApiData = {
   error_message: string;
   data: string;
 }
+
+export type RegistrationData = {
+  id: number;
+  username: string;
+  password: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  address: string;
+  pincode: number;
+  uid: number;
+};

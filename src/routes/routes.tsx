@@ -9,6 +9,7 @@ import RentedContainer from "../Containers/RentedContainer";
 import LenedContainer from "../Containers/LenedContainer";
 import RegisterContainer from "../Containers/RegisterContainer";
 import ProtectedRoute from "./ProtectedRoute";
+import CopyRegisterContainer from "../Containers/CopyRegisterContainer";
 
 const routes = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <RegisterContainer/>
+    element: <CopyRegisterContainer/>
   },
   {
     element: <ProtectedRoute><Layout/></ProtectedRoute>,

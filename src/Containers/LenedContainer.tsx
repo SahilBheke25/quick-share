@@ -11,7 +11,7 @@ const LenedContainer = () => {
   })
   console.log("lended data: ", data)
   return (
-    <LendedComponent data={data}/>
+    <LendedComponent data={data ?? []}/>
   )
 }
 export  default LenedContainer;

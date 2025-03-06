@@ -25,10 +25,6 @@ const LendedComponent = ({data}: Props) => {
                 <p className="card-subtitle">{equipment.description}</p>
                 
               </div>
-              {/* <div className="card-buttons flex">
-                <button className="rent-btn" onClick={handleRent}>Rent now</button>
-                <button className="details-btn" >Details</button>
-              </div> */}
             </div>
           ))}
         </div>

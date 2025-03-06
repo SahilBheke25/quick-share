@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { ApiData, Bill, Equipments, LoginError, Requirement, Resp, User, UserCredentials, UserDetails } from "../../types/types";
+import { ApiData, Bill, Equipments, LoginError, RegisterSuccess, RegistrationData, Requirement, Resp, User, UserCredentials, UserDetails } from "../../types/types";
 
 interface AuthState {
   user: User | null;
@@ -85,7 +85,7 @@ export const apiSlice = createApi({
             const { data } = await queryFulfilled;
             dispatch(setUser(data.data));
             if (!data.error_code) {
-              // localStorage.setItem("token", data.data.token);
+              // localStorage.setItem("User", data.data.token);
             }
           } catch (error) {
             console.error("User Data fetching failed: ", error);
@@ -126,11 +126,29 @@ export const apiSlice = createApi({
         query: (id) => ({
           url: `/users/${id}/equipments/lended`
         }),
-        async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        async onQueryStarted(_, { queryFulfilled }) {
           try {
             const { data } = await queryFulfilled;
             console.log("lended query: ", data)
            
+          } catch (error) {
+            console.error("Login failed:", error);
+          }
+        }
+      }),
+      registerUser: builder.mutation<RegisterSuccess, RegistrationData>({
+        query: (user) => ({
+          url: `/user/register`,
+          method: "POST",
+          body: user,
+        }),
+        async onQueryStarted(_, { queryFulfilled }) {
+          try {
+            const { data } = await queryFulfilled;
+            console.log("User Registered: ")
+            if (!data.error_code) {
+              // localStorage.setItem("token", data.data.token);
+            }
           } catch (error) {
             console.error("Login failed:", error);
           }
@@ -148,7 +166,8 @@ export const {
   useGetOwnerByEquipIdQuery,
   useRentEquipmentMutation,
   useUpdateUserProfileMutation,
-  useGetLendedEquipmentsQuery
+  useGetLendedEquipmentsQuery,
+  useRegisterUserMutation
 } = apiSlice;
 
 // export const { login } = loginSlice.actions

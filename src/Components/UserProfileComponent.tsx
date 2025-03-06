@@ -7,23 +7,24 @@ import { User } from "../types/types";
 
 interface UserProfileProps {
   user: User | null
-  values: {
-    firstName: string | undefined;
-    lastName: string | undefined;
-    address: string | undefined;
-    pincode: number | undefined;
-    email: string | undefined;
-  };
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   errors: any;
+  values: {
+    firstName: string | undefined,
+    lastName: string | undefined,
+    address: string | undefined,
+    pincode: number | undefined,
+    email: string | undefined
+  }
 }
 const UserProfileComponent = ({
+
   user,
-  values,
   handleChange,
   handleSubmit,
   errors,
+  values
 }: UserProfileProps) => {
   return (
     <>
@@ -35,7 +36,7 @@ const UserProfileComponent = ({
               <input
                 type="text"
                 name="firstName"
-                value={user?.firstname}
+                value={values?.firstName}
                 placeholder="Enter First Name"
                 className="input-field"
                 onChange={handleChange}
@@ -46,7 +47,7 @@ const UserProfileComponent = ({
               <input
                 type="text"
                 name="lastName"
-                value={user?.lastname}
+                value={values?.lastName}
                 placeholder="Enter Last Name"
                 className="input-field"
                 onChange={handleChange}
@@ -57,7 +58,7 @@ const UserProfileComponent = ({
               <input
                 type="email"
                 name="email"
-                value={user?.email}
+                value={values?.email}
                 placeholder="Enter email"
                 className="input-field"
                 onChange={handleChange}
@@ -68,7 +69,7 @@ const UserProfileComponent = ({
               <input
                 type="text"
                 name="address"
-                value={user?.address}
+                value={values?.address}
                 placeholder="Enter your Address"
                 className="input-field"
                 onChange={handleChange}
@@ -78,7 +79,7 @@ const UserProfileComponent = ({
               <input
                 type="number"
                 name="pincode"
-                value={user?.pincode}
+                value={values?.pincode}
                 placeholder="Enter your Pincode"
                 className="input-field"
                 onChange={handleChange}

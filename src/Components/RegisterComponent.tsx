@@ -1,237 +1,120 @@
 import "./styles/register.css";
 
-const RegisterComponent = () => {
+interface RegisterProps {
+	handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	handleRegisterUser: (event: React.FormEvent<HTMLFormElement>) => void;
+	errors: any;
+	// touched: {username: string;
+  //   firstName: string;
+  //   lastName: string;
+  //   email: string;
+  //   phone: string;
+  //   address: string;
+  //   pincode: number;
+  //   uid: number;};
+}
+const RegisterComponent = ({ handleChange, handleRegisterUser, errors}: RegisterProps) => {
   return (
     <>
-		{/*
-  Heads up! 👋
+      <section className="bg-white">
+        <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
+          <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+            <div className="max-w-xl lg:max-w-3xl">
+              <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+                Welcome to Quick Share 🦑
+              </h1>
 
-  Plugins:
-    - @tailwindcss/forms
-*/}
+              <form onSubmit={(event) => {
+								handleRegisterUser(event)
+							}} 
+								className="mt-8 grid grid-cols-6 gap-6">
+                {/* Username */}
+                <div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="username">UserName</label>
+                  <input type="text" id="username" name="username" onChange={handleChange} />
+                  {errors.username&& <p className="text-red-500 text-sm register-error">{errors.username}</p>}
+                </div>
 
-<section className="bg-white">
-  <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
+								<div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="password">Password</label>
+                  <input type="password" id="password" name="password" onChange={handleChange} />
+                  {errors.password&& <p className="text-red-500 text-sm register-error">{errors.password}</p>}
+                </div>
 
-    <main
-      className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
-    >
-      <div className="max-w-xl lg:max-w-3xl">
+                {/* First Name */}
+                <div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="firstName">First Name</label>
+                  <input type="text" id="firstName" name="firstName" onChange={handleChange} />
+                  {errors.firstName && <p className="text-red-500 text-sm register-error">{errors.firstName}</p>}
+                </div>
 
-        <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-          Welcome to Quick Share 🦑
-        </h1>
+                {/* Last Name */}
+                <div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" onChange={handleChange} />
+                  {errors.lastName && <p className="text-red-500 text-sm register-error">{errors.lastName}</p>}
+                </div>
 
-        <form action="#" className="mt-8 grid grid-cols-6 gap-6">
-				<div className="col-span-6 sm:col-span-3">
-            <label htmlFor="Username" className="block text-sm font-medium text-gray-700">
-              UserName
-            </label>
+                {/* Email */}
+                <div className="col-span-6">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" name="email" onChange={handleChange} />
+                  {errors.email && <p className="text-red-500 text-sm register-error">{errors.email}</p>}
+                </div>
 
-            <input
-              type="text"
-              id="Username"
-              name="Username"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-            />
-          </div>
-          <div className="col-span-6 sm:col-span-3">
-            <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
-              First Name
-            </label>
+                {/* Phone */}
+                <div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="phone">Phone</label>
+                  <input type="text" id="phone" name="phone" onChange={handleChange} />
+                  {errors.phone && <p className="text-red-500 text-sm register-error">{errors.phone}</p>}
+                </div>
 
-            <input
-              type="text"
-              id="FirstName"
-              name="first_name"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-            />
-          </div>
+                {/* Address */}
+                <div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="address">Address</label>
+                  <input type="text" id="address" name="address" onChange={handleChange} />
+                  {errors.address && <p className="text-red-500 text-sm register-error">{errors.address}</p>}
+                </div>
 
-          <div className="col-span-6 sm:col-span-3">
-            <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">
-              Last Name
-            </label>
+                {/* Pincode */}
+                <div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="pincode">Pincode</label>
+                  <input type="number" id="pincode" name="pincode" onChange={handleChange} />
+                  {errors.pincode && <p className="text-red-500 text-sm register-error">{errors.pincode}</p>}
+                </div>
 
-            <input
-              type="text"
-              id="LastName"
-              name="last_name"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-            />
-          </div>
+                {/* UID */}
+                <div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="uid">UID</label>
+                  <input type="number" id="uid" name="uid" onChange={handleChange} />
+                  {errors.uid && <p className="text-red-500 text-sm register-error">{errors.uid}</p>}
+                </div>
 
-          <div className="col-span-6">
-            <label htmlFor="Email" className="block text-sm font-medium text-gray-700"> Email </label>
+                {/* Terms and Conditions */}
+                <div className="col-span-6">
+                  <p className="text-sm text-gray-500">
+                    By creating an account, you agree to our
+                    <a href="#" className="text-gray-700 underline"> terms and conditions </a>
+                    and
+                    <a href="#" className="text-gray-700 underline"> privacy policy</a>.
+                  </p>
+                </div>
 
-            <input
-              type="email"
-              id="Email"
-              name="email"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-            />
-          </div>
-					<div className="col-span-6 sm:col-span-3">
-            <label htmlFor="Phone" className="block text-sm font-medium text-gray-700">
-              Phone
-            </label>
-
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-            />
-          </div>
-
-          <div className="col-span-6 sm:col-span-3">
-            <label htmlFor="Password" className="block text-sm font-medium text-gray-700"> Password </label>
-
-            <input
-              type="password"
-              id="Password"
-              name="password"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-            />
-          </div>
-
-          <div className="col-span-6 sm:col-span-3">
-            <label htmlFor="Pincode" className="block text-sm font-medium text-gray-700">
-              Pincode
-            </label>
-
-            <input
-              type="number"
-              id="pincode"
-              name="pincode"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-            />
-          </div>
-
-					<div className="col-span-6 sm:col-span-3">
-            <label htmlFor="Address" className="block text-sm font-medium text-gray-700">
-              Address
-            </label>
-
-            <input
-              type="text"
-              id="Address"
-              name="Address"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-            />
-          </div>
-
-					<div className="col-span-6 sm:col-span-3">
-            <label htmlFor="Uid" className="block text-sm font-medium text-gray-700">
-              Uid
-            </label>
-
-            <input
-              type="text"
-              id="Uid"
-              name="Uid"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-            />
-          </div>
-
-         
-
-          <div className="col-span-6">
-            <p className="text-sm text-gray-500">
-              By creating an account, you agree to our
-              <a href="#" className="text-gray-700 underline"> terms and conditions </a>
-              and
-              <a href="#" className="text-gray-700 underline">privacy policy</a>.
-            </p>
-          </div>
-
-          <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-            <button
-              className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:ring-3 focus:outline-hidden"
-            >
-              Create an account
-            </button>
-
-            <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-              Already have an account?
-              <a href="#" className="text-gray-700 underline">Log in</a>.
-            </p>
-          </div>
-        </form>
-      </div>
-    </main>
-  </div>
-</section>
-     {/* <div class="wrapper" style="background-image: url('images/bg-registration-form-1.jpg');">
-			<div class="inner">
-				<div class="image-holder">
-					<img src="images/registration-form-1.jpg" alt="">
-				</div>
-				<form action="">
-					<h3>Registration Form</h3>
-					<div class="form-group">
-						<input type="text" placeholder="First Name" class="form-control">
-						<input type="text" placeholder="Last Name" class="form-control">
-					</div>
-					<div class="form-wrapper">
-						<input type="text" placeholder="Username" class="form-control">
-						<i class="zmdi zmdi-account"></i>
-					</div>
-					<div class="form-wrapper">
-						<input type="text" placeholder="Email Address" class="form-control">
-						<i class="zmdi zmdi-email"></i>
-					</div>
-					<div class="form-wrapper">
-						<select name="" id="" class="form-control">
-							<option value="" disabled selected>Gender</option>
-							<option value="male">Male</option>
-							<option value="femal">Female</option>
-							<option value="other">Other</option>
-						</select>
-						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
-					</div>
-					<div class="form-wrapper">
-						<input type="password" placeholder="Password" class="form-control">
-						<i class="zmdi zmdi-lock"></i>
-					</div>
-					<div class="form-wrapper">
-						<input type="password" placeholder="Confirm Password" class="form-control">
-						<i class="zmdi zmdi-lock"></i>
-					</div>
-					<button>Register
-						<i class="zmdi zmdi-arrow-right"></i>
-					</button>
-				</form>
-			</div>
-		</div> */}
-
-        {/* <div className="htmlForm-group">
-            <label htmlFor="country">Country</label>
-            <select id="country" className="input-field">
-                <option>United States</option>
-                <option>Canada</option>
-                <option>United Kingdom</option>
-                <option>Australia</option>
-                <option>India</option>
-            </select>
-        </div> */}
-
-        {/* <div className="htmlForm-group">
-          <label htmlFor="street">Street address</label>
-          <input type="text" id="street" className="input-field" />
+                {/* Submit Button */}
+                <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
+                  <button type="submit" className="inline-block rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:ring-3 focus:outline-hidden">
+                    Create an account
+                  </button>
+                  <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                    Already have an account?
+                    <a href="#" className="text-gray-700 underline"> Log in</a>.
+                  </p>
+                </div>
+              </form>
+            </div>
+          </main>
         </div>
-
-        <div className="row">
-          <div className="htmlForm-group">
-            <label htmlFor="zip">ZIP / Postal code</label>
-            <input type="text" id="zip" className="input-field" />
-          </div>
-          <div className="htmlForm-group">
-            <label htmlFor="addhar">Addhar</label>
-            <input type="text" id="addhar" className="input-field" />
-          </div>
-        </div>
-      </div> */}
+      </section>
     </>
   );
 };

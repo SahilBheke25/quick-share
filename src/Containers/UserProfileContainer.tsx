@@ -5,12 +5,16 @@ import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import { User } from "../types/types";
 import { useUpdateUserProfileMutation } from "../redux/rtk/slice";
+import toast from "react-hot-toast";
 
 const UserProfileContainer = () => {
-  const [updatedUserData, { data, isError }] = useUpdateUserProfileMutation();
-  const user = useSelector((state: RootState) => state.auth.user);
-  // console.log("usreprofile: ", user)
+  const [updatedUserData, { data, isError}] = useUpdateUserProfileMutation();
+  const user = useSelector((state: RootState) => state?.auth.user);
+  console.log("usreprofile: ", user)
 
+  if(isError){
+    toast.error("failed to update profile")
+  }
   const updateUser = () => {
     const updatedUser: User = {
       ...user,
@@ -68,11 +72,11 @@ const UserProfileContainer = () => {
 
   return (
     <UserProfileComponent
-      values={values}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       errors={errors}
       user={user}
+      values={values}
     />
   );
 };

@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
 import { Requirement } from "../types/types";
 import EquipmentComponent from "../Components/EquipmentsComponent";
 import {
@@ -9,6 +7,7 @@ import {
   useGetUserProfileByIdQuery,
   useRentEquipmentMutation,
 } from "../redux/rtk/slice";
+import toast from "react-hot-toast";
 
 const EquipmentContainer = () => {
 
@@ -50,6 +49,7 @@ const EquipmentContainer = () => {
     console.log("placeOrder: ", req)
     try{
       const response = await rent(req).unwrap();
+      toast.success("Order Placed Successfully")
       refetch()
       console.log("res: ", response)
     }catch(err){
