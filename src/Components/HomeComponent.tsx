@@ -1,23 +1,15 @@
-import { useGetQuipmentsQuery } from "../redux/rtk/slice";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { useNavigate } from "react-router-dom";
-import tractorImg from "../assets/login.jpg";
+import tractorImg from "../assets/Images/tractor.png";
 import "../shared/styles/normalize.css";
 import "../shared/styles/homeSytle.css";
+import { Equipments } from "../types/types";
 
-const HomeComponent = () => {
-  const { data, isLoading, error } = useGetQuipmentsQuery();
-  const navigate = useNavigate();
-
-  if (isLoading) return <div>Loading.....</div>;
-
-  console.log("Equipments Data:", data);
-
-  const handleEquipmentDetails = (id: number) => {
-    navigate(`/equipment/${id}`);
-  };
-
+type Props = {
+  data : Equipments[] | undefined,
+  handleEquipment: (id:number) => void
+  handleRent: () => void
+}
+const HomeComponent = ({data, handleEquipment, handleRent}: Props) => {
+  console.log("data: ", data)
   return (
     <>
       <div className="card-section flex w100 justify-center">
@@ -33,8 +25,8 @@ const HomeComponent = () => {
                 </p>
               </div>
               <div className="card-buttons flex">
-                <button className="rent-btn">Rent now</button>
-                <button className="details-btn" onClick={() => handleEquipmentDetails(equipment.id)}>Details</button>
+                {/* <button className="rent-btn" onClick={handleRent}>Rent now</button> */}
+                <button className="details-btn" onClick={() => handleEquipment(equipment.id)}>Details</button>
               </div>
             </div>
           ))}

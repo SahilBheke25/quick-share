@@ -1,9 +1,11 @@
-import EquiImg from "../assets/login.jpg";
+import EquiImg from "../assets/Images/tractor.png";
 import { Equipments, Requirement, User } from "../types/types";
 import "./styles/equipmentPageStyle.css";
 import "../shared/styles/normalize.css";
 import "./styles/modelWindow.css";
 import { useState } from "react";
+import userImg from "../assets/Images/profile pic.jpg"
+
 
 type Props = {
   equipment?: Equipments;
@@ -11,7 +13,7 @@ type Props = {
   handleRent: () => void;
   isModalOpen: boolean;
   closeModal: () => void;
-  placeOrder: () => void;
+  placeOrder: (obj:Requirement) => void;
 };
 
 const EquipmentComponent = ({
@@ -95,6 +97,8 @@ const EquipmentComponent = ({
   const rentEndISO = new Date(rentEnd).toISOString().toString();
 
     const obj : Requirement = {
+      equipmentId: equipment?.id as number,
+      userId: 0,
       billingData: {
         rent_at: rentStartISO,
         rent_till: rentEndISO,
@@ -162,7 +166,7 @@ const EquipmentComponent = ({
           <h3 className="subtitle">Listing Agent</h3>
           <div className="listing-agent">
             <img
-              src="Images/profile pic.jpg"
+              src={userImg}
               alt="Agent"
               className="agent-img"
             />
@@ -221,8 +225,8 @@ const EquipmentComponent = ({
 
             {error && <p style={{ color: "red" }}>{error}</p>}
 
-            <button onClick={closeModal}>Cancel</button>
-            <button onClick={handlePlaceOrder}>Place Order</button>
+            <button className="rent-cancle" onClick={closeModal}>Cancel</button>
+            <button className="rent-place" onClick={handlePlaceOrder}>Place Order</button>
           </div>
         </div>
       )}

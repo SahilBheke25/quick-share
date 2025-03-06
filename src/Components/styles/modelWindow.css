@@ -14,7 +14,7 @@
   padding: 20px;
   border-radius: 8px;
   width: 300px;
-  height: 300px;
+  height: 350;
   text-align: center;
 }
 
@@ -116,4 +116,14 @@ select, input {
 
 .order-btn:hover {
   background: #92C472;
+}
+
+.rent-cancle{
+  background-color: white;
+  color: red;
+}
+
+.rent-place{
+background-color: white;
+color: black;
 }

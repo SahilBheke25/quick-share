@@ -2,34 +2,48 @@ import "../styles/normalize.css";
 import "../styles/homeSytle.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
+import userImg from "../../assets/Images/profile pic.jpg"
+import { useGetUserProfileByIdQuery } from "../../redux/rtk/slice";
 
 function Navbar() {
-  const user = useSelector((state: RootState) => state.auth.user);
+  // const user = useSelector  ((state: RootState) => state.auth.user);
+  const {data: userDetails} = useGetUserProfileByIdQuery(Number(localStorage.getItem("userId")))
 
+  const navigate = useNavigate()
+  const handleNavigate = (path:string) => {
+    navigate(path)
+  }
+  const handleLogout = () => {
+    // localStorage.clear()
+    localStorage.removeItem("token")
+    localStorage.removeItem("userId")
+    navigate("/")
+  
+  }
   return (
     <div className="sidebar">
       <div className="profile">
-        <img src="Images/IMG_20250217_124718_570.jpg" alt="Profile Picture" />
+        <img src={userImg} alt="Profile Picture" />
         <div className="info">
-          <h3>{user ? user.username : "Username"}</h3>
-          <p>{user ? user.email : "example@gmail.com"}</p>
+          <h3>{userDetails?.data ? userDetails.data.username : "Username"}</h3>
+          <p>{userDetails?.data ? userDetails.data.email : "example@gmail.com"}</p>
         </div>
       </div>
 
       <div className="menu">
         <ul>
           <li>
-            <a href="/user/user-profile">Profile</a>
-            {/* <button>Profile</button> */}
+            <a onClick={() => handleNavigate("/user/user-profile")}>Profile</a>
           </li>
           <li>
-            <a href="/user/account-security">Account & Security</a>
+            <a onClick={() => handleNavigate("/user/account-security")}>Account & Security</a>
           </li>
           <li>
-            <a href="/user/rented">Rented</a>
+            <a onClick={() => handleNavigate("/user/Rented")}>Rented</a>
           </li>
           <li>
-            <a href="/user/lended">Lended</a>
+            <a onClick={() => handleNavigate("/user/Lended")}>Lended</a>
           </li>
           <li>
             <a href="#" id="future-scope">
@@ -41,16 +55,25 @@ function Navbar() {
               Theme
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="#">Log Out</a>
-          </li>
+          </li> */}
         </ul>
       </div>
 
-      <footer>
+      {/* <footer>
         Crafted with
         <br />
         by Sahil Bheke
+      </footer> */}
+      <footer>
+        <div className="menu">
+          <ul>
+            <li>
+            <a onClick={handleLogout} className="logout">Log Out</a>
+            </li>
+          </ul>
+        </div>
       </footer>
     </div>
   );

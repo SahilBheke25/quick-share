@@ -1,4 +1,4 @@
-import HomeContainer from "../Components/HomeComponent";
+import HomeContainer from "../Containers/HomeContainer";
 import LoginContainer from "../Containers/LoginContainer";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../shared/Layout";
@@ -8,6 +8,7 @@ import AccountSecurityContainer from "../Containers/AccountSecurityContainer";
 import RentedContainer from "../Containers/RentedContainer";
 import LenedContainer from "../Containers/LenedContainer";
 import RegisterContainer from "../Containers/RegisterContainer";
+import ProtectedRoute from "./ProtectedRoute";
 
 const routes = createBrowserRouter([
   {
@@ -19,11 +20,11 @@ const routes = createBrowserRouter([
     element: <RegisterContainer/>
   },
   {
-    element: <Layout/>,
+    element: <ProtectedRoute><Layout/></ProtectedRoute>,
     children: [
       {
         path: "/home",
-        element: <HomeContainer/>,
+        element: <HomeContainer />,
       },
       {
         path: "/equipment/:id",

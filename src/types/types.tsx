@@ -61,3 +61,9 @@ export type Requirement = {
     quantity: number;
   };
 };
+
+export type ApiData = {
+  error_code: number;
+  error_message: string;
+  data: string;
+}

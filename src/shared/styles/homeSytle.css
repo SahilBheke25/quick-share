@@ -13,27 +13,27 @@
 
 @font-face {
   font-family: 'ClashGrotesk';
-  src: url(fonts/ClashGrotesk-Light.woff2)
+  src: url(../../assets/fonts/ClashGrotesk-Light.woff2)
   format('woff2'),
-  url(fonts/ClashGrotesk-Light.woff)
+  url(../../assets/fonts/ClashGrotesk-Light.woff)
   format('woff');
   font-weight: 300;
 }
 
 @font-face {
   font-family: 'ClashGrotesk';
-  src: url(fonts/ClashGrotesk-Regular.woff2)
+  src: url(../../assets/fonts/ClashGrotesk-Regular.woff2)
   format('woff2'),
-  url(fonts/ClashGrotesk-Regular.woff)
+  url(../../assets/fonts/ClashGrotesk-Regular.woff)
   format('woff');
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'ClashGrotesk';
-  src: url(fonts/ClashGrotesk-Medium.woff2)
+  src: url(../../assets/fonts/ClashGrotesk-Medium.woff2)
   format('woff2'),
-  url(fonts/ClashGrotesk-Medium.woff)
+  url(../../assets/fonts/ClashGrotesk-Medium.woff)
   format('woff');
   font-weight: 500;
 }
@@ -354,6 +354,7 @@ footer {
 .details-btn {
   background: white;
   color: black;
+  width: 258px;
 }
 
 /* FUTURE SCOPE */
