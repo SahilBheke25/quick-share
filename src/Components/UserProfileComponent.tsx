@@ -1,12 +1,10 @@
 import "../shared/styles/normalize.css";
 import "../shared/styles/homeSytle.css";
 import "./styles/userFrom.css";
-import { User } from "../types/types";
 
 // import
 
 interface UserProfileProps {
-  user: User | null
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   errors: any;
@@ -19,8 +17,6 @@ interface UserProfileProps {
   }
 }
 const UserProfileComponent = ({
-
-  user,
   handleChange,
   handleSubmit,
   errors,

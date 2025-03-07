@@ -1,7 +1,5 @@
 import "../styles/normalize.css";
 import "../styles/homeSytle.css";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 import userImg from "../../assets/Images/profile pic.jpg"
 import { useGetUserProfileByIdQuery } from "../../redux/rtk/slice";
@@ -34,14 +32,14 @@ function Navbar() {
       <div className="menu">
         <ul>
           <li>
-            <a onClick={() => handleNavigate("/user/user-profile")}>Profile</a>
+            <a onClick={() => handleNavigate(`/user/${userDetails?.data.id}/user-profile`)}>Profile</a>
           </li>
-          <li>
+          {/* <li>
             <a onClick={() => handleNavigate("/user/account-security")}>Account & Security</a>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <a onClick={() => handleNavigate("/user/Rented")}>Rented</a>
-          </li>
+          </li> */}
           <li>
             <a onClick={() => handleNavigate("/user/Lended")}>Lended</a>
           </li>

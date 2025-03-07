@@ -22,8 +22,8 @@ const EquipmentContainer = () => {
   const { data: equipmentData, refetch} = useGetEquipmentByIdQuery(id ?? "0");
   // Update userId when equipmentData is available
   useEffect(() => {
-    if (equipmentData?.user_id) {
-      setUserId(equipmentData.user_id);
+    if (equipmentData?.data.user_id) {
+      setUserId(equipmentData?.data.user_id);
     }
   }, [equipmentData]);
 
@@ -45,7 +45,7 @@ const EquipmentContainer = () => {
 
   const placeOrder =  async (req: Requirement) => {
     req.userId = rentingUserId 
-    req.equipmentId = equipmentData?.id as number
+    req.equipmentId = equipmentData?.data.id as number
     console.log("placeOrder: ", req)
     try{
       const response = await rent(req).unwrap();
@@ -60,7 +60,7 @@ const EquipmentContainer = () => {
   return (
     <>
       <EquipmentComponent 
-      equipment={equipmentData} 
+      equipment={equipmentData?.data} 
       owner={ownerData?.data} 
       handleRent={handleRent} 
       isModalOpen={isModalOpen} 

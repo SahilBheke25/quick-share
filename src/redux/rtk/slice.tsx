@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { ApiData, Bill, Equipments, LoginError, RegisterSuccess, RegistrationData, Requirement, Resp, User, UserCredentials, UserDetails } from "../../types/types";
+import { Bill, CreateEquipmentsType, EquipmentDetails, Equipments, RegisterSuccess, RegistrationData, Requirement, SingleEquipment, User, UserCredentials, UserDetails } from "../../types/types";
+import toast from "react-hot-toast";
+
 
 interface AuthState {
   user: User | null;
@@ -66,12 +68,12 @@ export const apiSlice = createApi({
         },
       }),
 
-      getQuipments: builder.query<Equipments[], void>({
+      getQuipments: builder.query<EquipmentDetails, void>({
         query: () => ({
           url: "/equipments",
         }),
       }),
-      getEquipmentById: builder.query<Equipments, string>({
+      getEquipmentById: builder.query<SingleEquipment, string>({
         query: (id) => ({
           url: `/equipments/${id}`,
         }),
@@ -80,12 +82,12 @@ export const apiSlice = createApi({
         query: (id) => ({
           url: `/user/${id}`,
         }),
-        async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        async onQueryStarted(_, { dispatch, queryFulfilled }) {
           try {
             const { data } = await queryFulfilled;
             dispatch(setUser(data.data));
             if (!data.error_code) {
-              // localStorage.setItem("User", data.data.token);
+              // localStorage.setItem("UserData", data.data);
             }
           } catch (error) {
             console.error("User Data fetching failed: ", error);
@@ -110,7 +112,7 @@ export const apiSlice = createApi({
           method: "PUT",
           body: updateUser,
         }),
-        async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        async onQueryStarted(_, { dispatch, queryFulfilled }) {
           try {
             const { data } = await queryFulfilled;
             dispatch(setUser(data.data));
@@ -122,7 +124,7 @@ export const apiSlice = createApi({
           }
         }
       }),
-      getLendedEquipments: builder.query<Equipments[], number>({
+      getLendedEquipments: builder.query<EquipmentDetails, number>({
         query: (id) => ({
           url: `/users/${id}/equipments/lended`
         }),
@@ -153,6 +155,30 @@ export const apiSlice = createApi({
             console.error("Login failed:", error);
           }
         }
+      }),
+      createEquipment: builder.mutation<SingleEquipment, CreateEquipmentsType>({
+        query: (equipment) => ({
+          url: `/equipments`,
+          method: "POST",
+          body: equipment,
+        }),
+        async onQueryStarted(_, { queryFulfilled }) {
+          try {
+            const { data } = await queryFulfilled;    
+            console.log("response: ", data)
+                    
+            if(data?.error_code){
+              toast.error("Equipment Creation failed. Try Again!!!!!")
+            }
+            else if(data?.data.id){
+            }
+            else{
+              toast.error("Equipment Creation failed. Try Again!")
+            }
+          } catch (error) {
+            console.error("Login failed:", error);
+          }
+        }
       })
     };
   },
@@ -167,7 +193,8 @@ export const {
   useRentEquipmentMutation,
   useUpdateUserProfileMutation,
   useGetLendedEquipmentsQuery,
-  useRegisterUserMutation
+  useRegisterUserMutation,
+  useCreateEquipmentMutation
 } = apiSlice;
 
 // export const { login } = loginSlice.actions

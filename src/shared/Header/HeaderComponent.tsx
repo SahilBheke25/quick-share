@@ -19,7 +19,7 @@ export function Header() {
       </div>
       <div className="nav-links">
         <a onClick={() => handleNavigate("/home")}>Home</a>
-        <a href="#">Lend</a>
+        <a onClick={() => handleNavigate("/lend")}>Lend</a>
       </div>
       <div className="auth-buttons">
         {/* <button className="login">Login</button>

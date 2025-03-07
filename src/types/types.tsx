@@ -15,6 +15,18 @@ export type Equipments = {
   user_id: number;
 };
 
+export type EquipmentDetails = {
+  error_code: number;
+  error_message: string;
+  data: Equipments[];
+};
+
+export type SingleEquipment = {
+  error_code: number;
+  error_message: string;
+  data: Equipments;
+};
+
 export type LoginError = {
   data: null;
   error_code: number;
@@ -84,4 +96,13 @@ export type RegistrationData = {
   address: string;
   pincode: number;
   uid: number;
+};
+
+export type CreateEquipmentsType = {
+  equipment_name: string;
+  description: string;
+  rent_per_day: number;
+  quantity: number;
+  equipment_img: string;
+  user_id: number;
 };

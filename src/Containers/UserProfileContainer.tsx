@@ -1,15 +1,17 @@
 import UserProfileComponent from "../Components/UserProfileComponent";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { RootState } from "../redux/store";
-import { useSelector } from "react-redux";
 import { User } from "../types/types";
-import { useUpdateUserProfileMutation } from "../redux/rtk/slice";
+import { useGetUserProfileByIdQuery, useUpdateUserProfileMutation } from "../redux/rtk/slice";
 import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
 const UserProfileContainer = () => {
+
+  const {id} = useParams();
+
   const [updatedUserData, { data, isError}] = useUpdateUserProfileMutation();
-  const user = useSelector((state: RootState) => state?.auth.user);
+  const {data: user, refetch} = useGetUserProfileByIdQuery(Number(id ?? "0"))
   console.log("usreprofile: ", user)
 
   if(isError){
@@ -18,29 +20,30 @@ const UserProfileContainer = () => {
   const updateUser = () => {
     const updatedUser: User = {
       ...user,
-      id : user?.id as number,
-      username : user?.username as string,
-      phone: user?.phone as string,
-      uid: user?.uid as number,
+      id : user?.data.id as number,
+      username : user?.data.username as string,
+      phone: user?.data.phone as string,
+      uid: user?.data.uid as number,
       firstname: values.firstName as string,
       address: values?.address as string,
       pincode: values?.pincode as number,
       email: values?.email as string,
       lastname: values?.lastName as string,
     };
-    console.log("type of pincode: ", typeof updatedUser.pincode);
+    // console.log("type of pincode: ", typeof updatedUser.pincode);
     updatedUserData(updatedUser);
     console.log("newUser: ", data);
-    alert(JSON.stringify(values, null, 2));
+    toast.success("Profile Updated Successfully")
+    refetch()
   };
 
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
-      firstName: user?.firstname,
-      lastName: user?.lastname,
-      address: user?.address,
-      pincode: user?.pincode,
-      email: user?.email
+      firstName: user?.data.firstname,
+      lastName: user?.data.lastname,
+      address: user?.data.address,
+      pincode: user?.data.pincode,
+      email: user?.data.email
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid email address").required("Required"),
@@ -75,7 +78,6 @@ const UserProfileContainer = () => {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       errors={errors}
-      user={user}
       values={values}
     />
   );

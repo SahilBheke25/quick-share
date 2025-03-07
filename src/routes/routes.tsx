@@ -7,9 +7,9 @@ import UserProfileContainer from "../Containers/UserProfileContainer";
 import AccountSecurityContainer from "../Containers/AccountSecurityContainer";
 import RentedContainer from "../Containers/RentedContainer";
 import LenedContainer from "../Containers/LenedContainer";
-import RegisterContainer from "../Containers/RegisterContainer";
 import ProtectedRoute from "./ProtectedRoute";
 import CopyRegisterContainer from "../Containers/CopyRegisterContainer";
+import CreateEquipmentContainer from "../Containers/CreateEquipmentContainer";
 
 const routes = createBrowserRouter([
   {
@@ -32,7 +32,7 @@ const routes = createBrowserRouter([
         element: <EquipmentContainer/>,
       },
       {
-        path: '/user/user-profile',
+        path: '/user/:id/user-profile',
         element: <UserProfileContainer/>
       },
       {
@@ -46,6 +46,10 @@ const routes = createBrowserRouter([
       {
         path: '/user/lended',
         element: <LenedContainer/>
+      },
+      {
+        path: '/lend',
+        element: <CreateEquipmentContainer />
       }
     ],
   },

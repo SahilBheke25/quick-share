@@ -5,17 +5,17 @@ import toast from "react-hot-toast";
 
 const HomeContainer = () => {
 
-  const { data, isLoading, error } = useGetQuipmentsQuery();
-  const navigate = useNavigate();
+  const { data, isLoading } = useGetQuipmentsQuery();
 
+  const navigate = useNavigate();
   if (isLoading){
     toast.loading
   }
-  if(error){
+  if(data?.error_code){
     toast.error("Fetching failed")
   }
 
-  console.log("Equipments Data:", data);
+  console.log("Equipments Data:", data?.data);
 
   const handleEquipment= (id: number) => {
     navigate(`/equipment/${id}`);
@@ -25,7 +25,7 @@ const HomeContainer = () => {
     // navigate()
   }
 
-  return <HomeComponent data={data} handleEquipment={handleEquipment} handleRent={handleRent}/>;
+  return <HomeComponent data={data?.data} handleEquipment={handleEquipment} handleRent={handleRent}/>;
 };
 
 export default HomeContainer;

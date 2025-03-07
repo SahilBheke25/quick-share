@@ -8,7 +8,7 @@ type Props = {
   handleEquipment: (id:number) => void
   handleRent: () => void
 }
-const HomeComponent = ({data, handleEquipment, handleRent}: Props) => {
+const HomeComponent = ({data, handleEquipment}: Props) => {
   console.log("data: ", data)
   return (
     <>
