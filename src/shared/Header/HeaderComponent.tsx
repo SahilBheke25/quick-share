@@ -1,54 +1,31 @@
-import { IconSearch } from "@tabler/icons-react";
-import { Autocomplete, Burger, Group } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-// import { MantineLogo } from '@mantinex/mantine-logo';
-import classes from "./Header.module.css";
-
-const links = [
-  { link: "/rent", label: "Rent" },
-  { link: "/lend", label: "Lend" },
-  // { link: "/learn", label: "Learn" },
-  { link: "/aboutUs", label: "AboutUs" },
-];
+import "../styles/normalize.css";
+import "../styles/homeSytle.css";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
-  const [opened, { toggle }] = useDisclosure(false);
 
-  const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={classes.link}
-      onClick={(event) => event.preventDefault()}
-    >
-      {link.label}
-    </a>
-  ));
+  const navigate = useNavigate()
+  const handleNavigate = (path:string) => {
+    navigate(path)
+  }
 
   return (
-    // <header className={classes.header}>
-    <div className={classes.inner}>
-      <Group>
-        <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-        {/* <img alt="logo" /> */}
-        <text>QuickShare</text>
-      </Group>
-      <Group>
-        <Autocomplete
-          className={classes.search}
-          placeholder="Search"
-          leftSection={<IconSearch size={16} stroke={1.5} />}
-          data={["Tractor", "Powl"]}
-          visibleFrom="xs"
-        />
-      </Group>
-      <Group>
-        <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
-          {items}
-        </Group>
-      </Group>
-    </div>
-    // </header>
+    <nav className="navbar">
+      <div className="logo">
+        Quick <strong>Share</strong>
+      </div>
+      <div className="search-bar">
+        <input type="text" placeholder="Search" />
+      </div>
+      <div className="nav-links">
+        <a onClick={() => handleNavigate("/home")}>Home</a>
+        <a onClick={() => handleNavigate("/lend")}>Lend</a>
+      </div>
+      <div className="auth-buttons">
+        {/* <button className="login">Login</button>
+        <button className="signup">Signup</button> */}
+      </div>
+    </nav>
   );
 }
 
