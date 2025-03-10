@@ -24,7 +24,7 @@ const HomeComponent = ({data, handleEquipment}: Props) => {
                   ₹ {equipment.rent_per_day}<text id="future-scope">/day</text>
                 </p>
               </div>
-              <div className="card-buttons flex">
+              <div className="card-buttons ">
                 {/* <button className="rent-btn" onClick={handleRent}>Rent now</button> */}
                 <button className="details-btn" onClick={() => handleEquipment(equipment.id)}>Details</button>
               </div>

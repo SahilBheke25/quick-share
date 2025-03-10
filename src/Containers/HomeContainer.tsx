@@ -1,4 +1,4 @@
-import { useGetQuipmentsQuery } from "../redux/rtk/slice";
+import { useGetQuipmentsQuery } from "../redux/rtk/api";
 import HomeComponent from "../Components/HomeComponent";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";

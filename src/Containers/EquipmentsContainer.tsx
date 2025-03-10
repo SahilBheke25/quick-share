@@ -6,7 +6,7 @@ import {
   useGetEquipmentByIdQuery,
   useGetUserProfileByIdQuery,
   useRentEquipmentMutation,
-} from "../redux/rtk/slice";
+} from "../redux/rtk/api";
 import toast from "react-hot-toast";
 
 const EquipmentContainer = () => {

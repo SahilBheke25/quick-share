@@ -1,5 +1,5 @@
 import LendedComponent from "../Components/LendedComponent";
-import { useGetLendedEquipmentsQuery } from "../redux/rtk/slice";
+import { useGetLendedEquipmentsQuery } from "../redux/rtk/api";
 
 const LenedContainer = () => {
 

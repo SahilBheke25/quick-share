@@ -8,7 +8,7 @@ import AccountSecurityContainer from "../Containers/AccountSecurityContainer";
 import RentedContainer from "../Containers/RentedContainer";
 import LenedContainer from "../Containers/LenedContainer";
 import ProtectedRoute from "./ProtectedRoute";
-import CopyRegisterContainer from "../Containers/CopyRegisterContainer";
+import CopyRegisterContainer from "../Containers/RegisterContainer";
 import CreateEquipmentContainer from "../Containers/CreateEquipmentContainer";
 
 const routes = createBrowserRouter([

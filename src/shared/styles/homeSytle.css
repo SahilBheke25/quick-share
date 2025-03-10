@@ -58,6 +58,7 @@ button {
   border-radius: 7px;
   font-size: 16px;
   font-weight: 400;
+  margin: 10px;
 }
 
 li {
@@ -327,12 +328,15 @@ footer {
 
 .card-content{
   flex: 1;
+  margin-bottom: 0px;
+  height: 10px;
 }
 
 .card-buttons {
   gap: 6px;
   align-self: flex-end;
-  margin-top: auto;
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
 
 .rent-btn, .details-btn {
@@ -343,6 +347,8 @@ footer {
   font-weight: 500;
   cursor: pointer;
   border: 0.5px solid black;
+  height: 40px;
+  margin-top: 0px;
 }
 
 .rent-btn {
@@ -361,5 +367,10 @@ footer {
 #future-scope{
   color: var(--future-scope);
   font-size: 20px;
+}
+
+.logout{
+  color: red;
+  margin-left: 10px;
 }
 /* FUTURE SCOPE END*/ 

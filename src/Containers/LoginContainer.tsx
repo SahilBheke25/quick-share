@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/rtk/slice";
-import { useUserLoginMutation } from "../redux/rtk/slice";
+import { useUserLoginMutation } from "../redux/rtk/api";
 import { useNavigate } from "react-router-dom";
 import LoginComponent from "../Components/LoginComponent";
 import { UserCredentials } from "../types/types";

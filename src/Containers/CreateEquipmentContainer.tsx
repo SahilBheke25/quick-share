@@ -3,7 +3,7 @@ import { useNavigate} from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
-import { useCreateEquipmentMutation } from '../redux/rtk/slice';
+import { useCreateEquipmentMutation } from '../redux/rtk/api';
 import { CreateEquipmentsType } from '../types/types';
 
 

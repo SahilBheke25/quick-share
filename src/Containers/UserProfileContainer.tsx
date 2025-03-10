@@ -2,26 +2,31 @@ import UserProfileComponent from "../Components/UserProfileComponent";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { User } from "../types/types";
-import { useGetUserProfileByIdQuery, useUpdateUserProfileMutation } from "../redux/rtk/slice";
+import {
+  apiSlice,
+  useGetUserProfileByIdQuery,
+  useUpdateUserProfileMutation,
+} from "../redux/rtk/api";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const UserProfileContainer = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const {id} = useParams();
+  const [updatedUserData, { data, isError }] = useUpdateUserProfileMutation();
+  const { data: user, refetch } = useGetUserProfileByIdQuery(Number(id ?? "0"));
+  console.log("usreprofile: ", user);
 
-  const [updatedUserData, { data, isError}] = useUpdateUserProfileMutation();
-  const {data: user, refetch} = useGetUserProfileByIdQuery(Number(id ?? "0"))
-  console.log("usreprofile: ", user)
-
-  if(isError){
-    toast.error("failed to update profile")
+  if (isError) {
+    toast.error("failed to update profile");
   }
   const updateUser = () => {
     const updatedUser: User = {
       ...user,
-      id : user?.data.id as number,
-      username : user?.data.username as string,
+      id: user?.data.id as number,
+      username: user?.data.username as string,
       phone: user?.data.phone as string,
       uid: user?.data.uid as number,
       firstname: values.firstName as string,
@@ -33,8 +38,9 @@ const UserProfileContainer = () => {
     // console.log("type of pincode: ", typeof updatedUser.pincode);
     updatedUserData(updatedUser);
     console.log("newUser: ", data);
-    toast.success("Profile Updated Successfully")
-    refetch()
+    toast.success("Profile Updated Successfully");
+    // refetch()
+    dispatch(apiSlice.util.invalidateTags(["USER_PROFILE"]));
   };
 
   const { values, handleChange, handleSubmit, errors } = useFormik({
@@ -43,7 +49,7 @@ const UserProfileContainer = () => {
       lastName: user?.data.lastname,
       address: user?.data.address,
       pincode: user?.data.pincode,
-      email: user?.data.email
+      email: user?.data.email,
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid email address").required("Required"),

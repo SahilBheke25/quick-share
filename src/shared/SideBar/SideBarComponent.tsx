@@ -2,7 +2,7 @@ import "../styles/normalize.css";
 import "../styles/homeSytle.css";
 import { useNavigate } from "react-router-dom";
 import userImg from "../../assets/Images/profile pic.jpg"
-import { useGetUserProfileByIdQuery } from "../../redux/rtk/slice";
+import { useGetUserProfileByIdQuery } from "../../redux/rtk/api";
 
 function Navbar() {
   // const user = useSelector  ((state: RootState) => state.auth.user);
@@ -37,9 +37,9 @@ function Navbar() {
           {/* <li>
             <a onClick={() => handleNavigate("/user/account-security")}>Account & Security</a>
           </li> */}
-          {/* <li>
+          <li>
             <a onClick={() => handleNavigate("/user/Rented")}>Rented</a>
-          </li> */}
+          </li>
           <li>
             <a onClick={() => handleNavigate("/user/Lended")}>Lended</a>
           </li>
@@ -65,7 +65,7 @@ function Navbar() {
         by Sahil Bheke
       </footer> */}
       <footer>
-        <div className="menu">
+        <div>
           <ul>
             <li>
             <a onClick={handleLogout} className="logout">Log Out</a>

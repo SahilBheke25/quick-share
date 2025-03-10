@@ -1,5 +1,5 @@
-// import "../shared/styles/normalize.css";
-// import "../shared/styles/homeSytle.css";
+import "../shared/styles/normalize.css";
+import "../shared/styles/homeSytle.css";
 
 type Props = {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
