@@ -26,26 +26,26 @@ const CopyRegisterComponent = ({
         <form method="POST" onSubmit={handleSubmit}>
           <h3>Registration Form</h3>
 
-          {/* fistName and lastName are in the same div */}
+          {/* fistName and lastname are in the same div */}
           
           <div className="form-group">
-          {errors.firstName && touched.firstName ? (
-              <div className="register-error">{errors.firstName}</div>
+          {errors.firstname && touched.firstname ? (
+              <div className="register-error">{errors.firstname}</div>
             ) : null}
             <input
               type="text"
-              name="firstName"
+              name="firstname"
               placeholder="First Name"
               className="form-control"
               onChange={handleChange}
             />
             
-            {errors.lastName && touched.lastName ? (
-              <div className="register-error">{errors.lastName}</div>
+            {errors.lastname && touched.lastname ? (
+              <div className="register-error">{errors.lastname}</div>
             ) : null}
             <input
               type="text"
-              name="lastName"
+              name="lastname"
               placeholder="Last Name"
               className="form-control"
               onChange={handleChange}

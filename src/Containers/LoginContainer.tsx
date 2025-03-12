@@ -40,8 +40,3 @@ const LoginContainer = () => {
 };
 
 export default LoginContainer;
-
-// formik
-// yup
-// api
-// protected route

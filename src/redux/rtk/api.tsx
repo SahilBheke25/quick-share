@@ -1,41 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { Bill, CreateEquipmentsType, EquipmentDetails, Equipments, RegisterSuccess, RegistrationData, Requirement, SingleEquipment, User, UserCredentials, UserDetails } from "../../types/types";
+import { Bill, CreateEquipmentsType, EquipmentDetails, RegisterSuccess, RegistrationData, Requirement, SingleEquipment, User, UserCredentials, UserDetails } from "../../types/types";
 import toast from "react-hot-toast";
 import { setUser } from "./slice";
-
-
-// interface AuthState {
-//   user: User | null;
-// }
-
-// // Initial state
-// const initialState: AuthState = {
-//   user: null,
-// };
-
-// // Create user slice
-// const authSlice = createSlice({
-//   name: "auth",
-//   initialState,
-//   reducers: {
-//     setUser: (state, action: PayloadAction<User>) => {
-//       state.user = action.payload; // Store user data in Redux
-//     },
-//     logout: (state) => {
-//       state.user = null; // Clear user on logout
-//     },
-//   },
-// });
-
-// export const { setUser, logout } = authSlice.actions;
-// export default authSlice.reducer;
-
-// interface CounterState {
-//   value: number;
-// }
-
-// const initialState: UserCredentials = { username: "", password: "" };
 
 export const apiSlice = createApi({
   reducerPath: "login",
