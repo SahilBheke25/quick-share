@@ -9,8 +9,8 @@ interface UserProfileProps {
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   errors: any;
   values: {
-    firstName: string | undefined,
-    lastName: string | undefined,
+    firstname: string | undefined,
+    lastname: string | undefined,
     address: string | undefined,
     pincode: number | undefined,
     email: string | undefined
@@ -31,24 +31,24 @@ const UserProfileComponent = ({
               <label className="form-label">First Name:</label>
               <input
                 type="text"
-                name="firstName"
-                value={values?.firstName}
+                name="firstname"
+                value={values?.firstname}
                 placeholder="Enter First Name"
                 className="input-field"
                 onChange={handleChange}
               />
-              {errors.firstName ? <div>{errors.firstName}</div> : null}
+              {errors.firstname ? <div>{errors.firstname}</div> : null}
 
               <label className="form-label">Last Name:</label>
               <input
                 type="text"
-                name="lastName"
-                value={values?.lastName}
+                name="lastname"
+                value={values?.lastname}
                 placeholder="Enter Last Name"
                 className="input-field"
                 onChange={handleChange}
               />
-              {errors.lastName ? <div>{errors.lastName}</div> : null}
+              {errors.lastname ? <div>{errors.lastname}</div> : null}
 
               <label className="form-label">Email:</label>
               <input
